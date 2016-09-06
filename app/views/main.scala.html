@@ -1,0 +1,17 @@
+@(content: Html)
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Music tracker</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("javascripts/lib/bootstrap/dist/css/bootstrap.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("javascripts/lib/angular-loading-bar/src/loading-bar.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("javascripts/lib/c3/c3.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <script data-main="@routes.Assets.at("javascripts/main.js")" src="@routes.Assets.at("javascripts/lib/requirejs/require.js")"></script>
+    </head>
+    <body>
+        <navbar title="Music tracker"></navbar>
+        @content
+    </body>
+</html>
