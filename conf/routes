@@ -5,7 +5,12 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+# Tracks
+GET /tracks/:number                 controllers.Application.tracks(number: Int)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+
 
     

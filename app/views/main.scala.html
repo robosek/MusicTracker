@@ -10,8 +10,8 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <script data-main="@routes.Assets.at("javascripts/main.js")" src="@routes.Assets.at("javascripts/lib/requirejs/require.js")"></script>
     </head>
-    <body>
-        <navbar title="Music tracker"></navbar>
+    <body ng-cloak>
+        <navbar title="Music tracker" logo="http://image.flaticon.com/icons/svg/148/148722.svg"></navbar>
         @content
     </body>
 </html>

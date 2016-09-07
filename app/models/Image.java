@@ -1,12 +1,10 @@
 package models;
 
-import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by robert on 05.09.16.
  */
 public class Image {
-    @SerializedName("#text")
     private String url;
     private String size;
 

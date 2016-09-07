@@ -22,3 +22,13 @@
     color: white;
 }
 body { padding-top: 90px; }
+
+#loading-bar-spinner {
+  padding-top: 55px;
+
+}
+
+#loading-bar .bar {
+  top: 51px;
+  background-color: orange;
+}

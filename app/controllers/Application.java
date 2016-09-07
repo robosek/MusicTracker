@@ -19,8 +19,12 @@ public class Application extends Controller {
     }
 
     public Result index() {
-        String tracks = _tracksFacade.getTracks(10);
-        return ok(index.apply(tracks));
+        return ok(index.apply(""));
+    }
+    
+    public Result tracks(int number){
+         String tracks = _tracksFacade.getTracks(number);
+        return ok(tracks);
     }
 
     private static TracksFacade _tracksFacade;

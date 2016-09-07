@@ -7,7 +7,8 @@ define(['modules/app'],function (app) {
         return{
             restrict:"E",
             scope:{
-                title:'@title'
+                title:'@title',
+				logo:'@logo'
             },
             templateUrl: '../assets/templates/navbar.html',
             replace:true

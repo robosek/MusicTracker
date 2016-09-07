@@ -1,6 +1,30 @@
 @(text:String)
 @main {
 
-    <h1 style="text-align:center">Hello music!</h1>
-    <p>@text</p>
+    <div class="container" ng-controller="mainController">
+    <h1 style="text-align:center">Top songs in Poland</h1>
+    <table class="table table-bordered" ng-show="!error && songs.length>0">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Song name</th>
+                    <th>Artist name</th>
+                    <th>Listeners</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+   <tr ng-repeat="song in songs | orderBy : 'listeners'">
+    <td>{{$index + 1}}</td>
+    <td>{{ song.name }}</td>
+    <td>{{ song.artist.name }}</td>
+    <td>{{ song.listeners }}</td>
+    <td><img src="{{song.image[0]['#text']}}" class="img-rounded"></td>
+   </tr>    
+      </tbody>
+   </table>
+   <div ng-show="error">
+        <alert topic="Error occurred!" content="Data is not found. Sorry, try again later!"></alert>
+    </div>
+    </div>
 }

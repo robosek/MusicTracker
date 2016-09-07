@@ -6,6 +6,7 @@ require.config({
        angular:"lib/angular/angular",
        loadingBar:"lib/angular-loading-bar/src/loading-bar",
        route:"lib/angular-route/angular-route",
+       animate:"lib/angular-animate/angular-animate",
        bootstrap:"lib/bootstrap/bootstrap",
        c3:"lib/c3",
        d3:"lib/d3",
@@ -20,11 +21,15 @@ require.config({
         },
         route:{
             deps:['angular']
+        },
+        animate:{
+            deps:['angular']
         }
+        
     }
 
 });
 
-require(["modules/app","directives/navbar"],function(app){
+require(["modules/app","directives/navbar","directives/alert","services/musicHttpService","controllers/mainController"],function(app){
     app.init();
 });
