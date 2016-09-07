@@ -19,11 +19,11 @@ public class Application extends Controller {
     }
 
     public Result index() {
-        return ok(index.apply(""));
+        return ok(index.apply());
     }
     
     public Result tracks(int number){
-         String tracks = _tracksFacade.getTracks(number);
+         String tracks = _tracksFacade.getTopTracks(number);
         return ok(tracks);
     }
 

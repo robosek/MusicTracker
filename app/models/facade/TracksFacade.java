@@ -28,6 +28,10 @@ public class TracksFacade {
         return _dbFacade.getFirstDocumentJson();
     }
 
+    public String getTopTracks(int tracksNumber){
+        return _dbFacade.getDocumentsOrderdBy("listeners",true,tracksNumber);
+    }
+
     private DatabaseFacade _dbFacade;
 
 }

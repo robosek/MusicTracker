@@ -32,3 +32,8 @@ body { padding-top: 90px; }
   top: 51px;
   background-color: orange;
 }
+
+.thead-inverse th {
+    color: white;
+    background-color: #EA6248;
+}

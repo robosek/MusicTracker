@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.or;
 
 /**
  * Created by robert on 06.09.16.
@@ -50,6 +51,12 @@ public class DatabaseFacade {
 
     public String getDocumentsBy(String fieldName, String itemValue){
         FindIterable<Document> iterable = _dbCollection.find(eq(fieldName,itemValue));
+        return processIterable(iterable);
+    }
+
+    public String getDocumentsOrderdBy(String filedName, Boolean descending, int limit){
+        int order = descending ? -1 : 1;
+        FindIterable<Document> iterable = _dbCollection.find().limit(limit).sort(new Document(filedName,order));
         return processIterable(iterable);
     }
 

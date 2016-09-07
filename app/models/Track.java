@@ -30,12 +30,12 @@ public class Track  {
         this.duration = duration;
     }
 
-    public int getPlaycount() {
-        return playcount;
+    public Long getPlaycount() {
+        return listeners;
     }
 
-    public void setPlaycount(int playcount) {
-        this.playcount = playcount;
+    public void setPlaycount(Long listeners) {
+        this.listeners = listeners;
     }
 
     public String getMbid() {
@@ -71,7 +71,7 @@ public class Track  {
     }
 
     private double duration;
-    private int playcount;
+    private Long listeners;
     private String mbid;
     private String url;
     private Artist artis;
