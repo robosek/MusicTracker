@@ -27,6 +27,11 @@ public class Application extends Controller {
         return ok(tracks);
     }
 
+    public Result tracksByName(String name){
+        String tracks = _tracksFacade.getTracksByNameAndArtistName(name);
+        return ok(tracks);
+    }
+
     private static TracksFacade _tracksFacade;
 
 }

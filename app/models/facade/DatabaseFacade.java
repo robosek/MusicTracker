@@ -5,7 +5,9 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
+import javax.print.Doc;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -54,11 +56,18 @@ public class DatabaseFacade {
         return processIterable(iterable);
     }
 
-    public String getDocumentsOrderdBy(String filedName, Boolean descending, int limit){
+    public String getDocumentsOrderedBy(String filedName, Boolean descending, int limit){
         int order = descending ? -1 : 1;
         FindIterable<Document> iterable = _dbCollection.find().limit(limit).sort(new Document(filedName,order));
         return processIterable(iterable);
     }
+
+    public String getDocumentsBy(Document document){
+        FindIterable<Document> iterable = _dbCollection.find(document);
+        return processIterable(iterable);
+    }
+
+
 
     private MongoCollection<Document> _dbCollection;
     private String logExceptionAndReturnEmptyString(String message){
