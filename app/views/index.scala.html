@@ -1,6 +1,16 @@
 @main {
     <div class="container" ng-controller="mainController">
     <h1 style="text-align:center">Top songs in Poland</h1>
+    <form name="searchForm" class="form-horizontal">
+        <div class="form-group">
+          <label for="searchSongInput">Search song</label>
+         <input required type="text" class="form-control" ng-model="songName" id="searchSongInput" placeholder="Is your favourite song or artist on top lists?">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" ng-click="searchTrack(songName)">Search</button>
+        </div>
+    </form>
+    </br>
     <table class="table table-bordered" ng-show="!error && songs.length>0">
             <thead class="thead-inverse">
                 <tr>
@@ -11,7 +21,7 @@
                     <th>Image</th>
                 </tr>
             </thead>
-            <tbody>
+   <tbody>
    <tr ng-repeat="song in songs | orderBy : '-listeners'">
     <td>{{$index + 1}}</td>
     <td>{{ song.name }}</td>
@@ -19,10 +29,13 @@
     <td>{{ song.listeners }}</td>
     <td><img ng-src="{{getImage(song)}}" class="img-rounded" width="34" height="34"></td>
    </tr>    
-      </tbody>
+   </tbody>
    </table>
    <div ng-show="error">
         <alert topic="Error occurred!" content="Data is not found. Sorry, try again later!"></alert>
+    </div>
+    <div ng-show="showNotFoundSongs">
+        <alert topic="No songs have been found!" content="Unfortunately, there are no songs to display. Try again."></alert>
     </div>
     </div>
 }

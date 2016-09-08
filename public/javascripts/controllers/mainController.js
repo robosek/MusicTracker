@@ -1,11 +1,16 @@
 define(['modules/app','services/musicHttpService'],function(app,muiscHttpService){
-    app.controller("mainController",["$scope","musicHttpService",function($scope,musicHttpSerice){
+    app.controller("mainController",["$scope","musicHttpService",function($scope,musicHttpService){
 
         var imageNotFoundAddress = "../assets/images/noimagefound.jpg";
-
+        
         $scope.error = false;
-        musicHttpSerice.getTopTracks(100).success(function(data){
+        $scope.showNotFoundSongs = false;
+        
+        musicHttpService.getTopTracks(100).success(function(data){
            $scope.songs = data;
+            //$scope.songs = data.tracks.track;
+            var songsAreNotEmpty = checkSongs(data);
+           $scope.showNotFoundSongs = !songsAreNotEmpty;
         }).error(function(error){
             $scope.error = true;
         });
@@ -17,6 +22,24 @@ define(['modules/app','services/musicHttpService'],function(app,muiscHttpService
             }
             return _image;
         }
+        
+        $scope.searchTrack = function(name){
+            musicHttpService.searchTrack(name).success(function(data){
+            $scope.songs = data;
+            //$scope.songs = data.results.trackmatches.track;
+            var songsAreNotEmpty = checkSongs(data);
+            $scope.showNotFoundSongs = !songsAreNotEmpty;
+        })
+        .error(function(data){
+             $scope.error = true;
+        });
+        };
+           
+        function checkSongs(songs){
+            return songs!= undefined && songs.length > 0;
+        }
+          
+            
 
     }]);  
 });
