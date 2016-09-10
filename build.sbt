@@ -12,6 +12,10 @@ libraryDependencies ++= Seq( javaJdbc ,  cache , javaWs )
 
 libraryDependencies += "org.mongodb" % "mongodb-driver" % "3.3.0"
 
-unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
+libraryDependencies += "junit" % "junit" % "4.10"
+
+libraryDependencies += "com.github.fakemongo" % "fongo" % "2.0.6"
+
+unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"

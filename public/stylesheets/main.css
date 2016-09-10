@@ -21,7 +21,7 @@
 .navbar-inverse .navbar-brand {
     color: white;
 }
-body { padding-top: 90px; }
+body { padding-top: 90px; background-color: #E5E5E5;}
 
 #loading-bar-spinner {
   padding-top: 55px;
@@ -37,3 +37,22 @@ body { padding-top: 90px; }
     color: white;
     background-color: #EA6248;
 }
+tbody{
+    background-color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color:white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    color:#EA6248;
+    background-color: transparent;
+}
+
+h1{
+    text-align: center;
+}
+
+

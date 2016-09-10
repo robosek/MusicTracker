@@ -8,8 +8,8 @@ require.config({
        route:"lib/angular-route/angular-route",
        animate:"lib/angular-animate/angular-animate",
        bootstrap:"lib/bootstrap/bootstrap",
-       c3:"lib/c3",
-       d3:"lib/d3",
+       c3:"lib/c3/c3",
+       d3:"lib/d3/d3",
        jquery:"lib/dist/jquery"
    },
     shim:{
@@ -24,12 +24,16 @@ require.config({
         },
         animate:{
             deps:['angular']
+        },
+        c3:{
+            exports:'c3',
+            deps:['d3']
         }
-        
     }
 
 });
 
-require(["modules/app","directives/navbar","directives/alert","services/musicHttpService","controllers/mainController"],function(app){
+require(["modules/app","directives/navbar","directives/alert","services/musicHttpService","services/chartService",
+    "controllers/mainController","controllers/statisticController"],function(app){
     app.init();
 });

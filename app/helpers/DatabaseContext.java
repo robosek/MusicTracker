@@ -8,7 +8,6 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import java.util.Arrays;
 
-
 /**
  * Created by robert on 02.09.16.
  */
@@ -16,7 +15,7 @@ public class DatabaseContext {
 
     private DatabaseContext(DbContextBuilder builder){
         _dbClient = builder._dbClient;
-        _dbConnection = builder._dbConnection;
+        _db = builder._db;
         _dbCollection = builder._dbCollection;
     }
 
@@ -24,16 +23,21 @@ public class DatabaseContext {
         return _dbClient;
     }
 
-    public MongoDatabase geDbConnection() {
-        return _dbConnection;
+    public MongoDatabase getDatabase() {
+        return _db;
     }
 
     public MongoCollection<Document> getDbCollection() {
         return _dbCollection;
     }
 
+    public void closeConnection(){
+        if(_dbClient!=null)
+            _dbClient.close();
+    }
+
     private final MongoClient _dbClient;
-    private final MongoDatabase _dbConnection;
+    private final MongoDatabase _db;
     private final MongoCollection<Document> _dbCollection;
 
     public static class DbContextBuilder{
@@ -59,8 +63,8 @@ public class DatabaseContext {
 
         public DatabaseContext build(){
             _dbClient = initlializeMongoClient();
-            _dbConnection = _dbClient.getDatabase(_databaseName);
-            _dbCollection = _dbConnection.getCollection(_collectionName);
+            _db = _dbClient.getDatabase(_databaseName);
+            _dbCollection = _db.getCollection(_collectionName);
             return new DatabaseContext(this);
         }
 
@@ -76,7 +80,7 @@ public class DatabaseContext {
         private ServerAddress _serverAddress = new ServerAddress();
         private final String _databaseName;
         private MongoClient _dbClient;
-        private MongoDatabase _dbConnection;
+        private MongoDatabase _db;
         private MongoCollection<Document> _dbCollection;
     }
 

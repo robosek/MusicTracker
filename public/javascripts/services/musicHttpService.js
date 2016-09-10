@@ -12,10 +12,15 @@ define(['modules/app'],function(app){
             return $http.get("tracksByName/"+name);
             //return $http.get("http://ws.audioscrobbler.com/2.0/?method=track.search&track="+name+"&api_key=xxx&format=json");
         };
+
+        var _tracksAreValid = function (tracks) {
+            return tracks!= undefined && tracks.length > 0;
+        }
         
         return{
             getTopTracks: _getTopTracks,
-            searchTrack:_searchTrack
+            searchTrack:_searchTrack,
+            tracksAreValid:_tracksAreValid
         }
     }]);
     

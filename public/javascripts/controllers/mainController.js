@@ -9,7 +9,7 @@ define(['modules/app','services/musicHttpService'],function(app,muiscHttpService
         musicHttpService.getTopTracks(100).success(function(data){
            $scope.songs = data;
             //$scope.songs = data.tracks.track;
-            var songsAreNotEmpty = checkSongs(data);
+            var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
            $scope.showNotFoundSongs = !songsAreNotEmpty;
         }).error(function(error){
             $scope.error = true;
@@ -27,19 +27,13 @@ define(['modules/app','services/musicHttpService'],function(app,muiscHttpService
             musicHttpService.searchTrack(name).success(function(data){
             $scope.songs = data;
             //$scope.songs = data.results.trackmatches.track;
-            var songsAreNotEmpty = checkSongs(data);
+            var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
             $scope.showNotFoundSongs = !songsAreNotEmpty;
         })
         .error(function(data){
              $scope.error = true;
         });
         };
-           
-        function checkSongs(songs){
-            return songs!= undefined && songs.length > 0;
-        }
-          
-            
 
     }]);  
 });

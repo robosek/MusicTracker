@@ -1,0 +1,14 @@
+@main{
+    <div ng-controller="statisticController" class="container">
+    <h1>Top {{songsNumber}} songs on the board!</h1>
+        <div id="chart" ></div>
+
+        <div ng-show="error">
+            <alert topic="Error occurred!" content="Data is not found. Sorry, try again later!"></alert>
+        </div>
+        <div ng-show="showNotFoundSongs">
+            <alert topic="No songs have been found!" content="Unfortunately, there are no songs to display. Try again."></alert>
+        </div>
+    </div>
+
+}

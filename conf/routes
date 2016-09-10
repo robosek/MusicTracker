@@ -6,11 +6,13 @@
 GET     /                           controllers.Application.index()
 
 # Tracks
-GET /tracks/:number                 controllers.Application.tracks(number: Int)
+GET /tracks/:number                 controllers.Api.tracks(number: Int)
 
 # Tracks by name or artist name
-GET /tracksByName/:name            controllers.Application.tracksByName(name: String)
+GET /tracksByName/:name            controllers.Api.tracksByName(name: String)
 
+# Statistics
+GET /statistics                    controllers.Application.statistics()
 
 
 # Map static resources from the /public folder to the /assets URL path
