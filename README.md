@@ -1,4 +1,4 @@
-<h1>Music tracker - track top hits on the world</h1>
+<h1>Music tracker - track top hits</h1>
 <h2>Simple web application developed in java play framework, mongo database and some web frameworks</h2>
 <h2>Main technologies</h2>
 <ul>
