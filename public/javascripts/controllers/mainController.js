@@ -6,7 +6,7 @@ define(['modules/app','services/musicHttpService'],function(app,muiscHttpService
         $scope.error = false;
         $scope.showNotFoundSongs = false;
         
-        musicHttpService.getTopTracks(100).success(function(data){
+        musicHttpService.getTracks(100).success(function(data){
            $scope.songs = data;
             //$scope.songs = data.tracks.track;
             var songsAreNotEmpty = musicHttpService.tracksAreValid(data);

@@ -8,6 +8,9 @@ GET     /                           controllers.Application.index()
 # Tracks
 GET /tracks/:number                 controllers.Api.tracks(number: Int)
 
+#Top tracks
+GET /toptracks/:number              controllers.Api.topTracks(number: Int)
+
 # Tracks by name or artist name
 GET /tracksByName/:name            controllers.Api.tracksByName(name: String)
 

@@ -4,6 +4,8 @@ import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
 import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.regex.Pattern;
 
 /**
@@ -36,9 +38,10 @@ public class TracksFacade {
     }
 
     public String getTracksByNameAndArtistName(String name){
-       Document document = new Document("$or", Arrays.asList(new Document("name", Pattern.compile(name)),
-                new Document("artist.name", Pattern.compile(name))));
-        return _dbFacade.getDocumentsBy(document);
+        Dictionary keyValues = new Hashtable();
+        keyValues.put("name",name);
+        keyValues.put("artist.name",name);
+        return _dbFacade.getDocumentsByFields(keyValues,"or");
     }
 
     private DatabaseFacade _dbFacade;

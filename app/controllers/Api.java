@@ -22,6 +22,11 @@ public class Api extends Controller {
     }
 
     public Result tracks(int number){
+        String tracks = _tracksFacade.getTracks(number);
+        return ok(tracks);
+    }
+
+    public Result topTracks(int number){
         String tracks = _tracksFacade.getTopTracks(number);
         return ok(tracks);
     }

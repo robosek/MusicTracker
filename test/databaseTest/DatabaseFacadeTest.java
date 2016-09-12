@@ -12,6 +12,8 @@ import org.bson.Document;
 import org.junit.*;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -131,7 +133,7 @@ public class DatabaseFacadeTest {
     }
 
     @Test
-    public void getDocumentsByEmptyDocumentShouldReturnAllDocumetns(){
+    public void getDocumentsByEmptyDocumentShouldReturnAllDocuments(){
         DatabaseFacade facade = new DatabaseFacade(getDbCollection());
         String test = facade.getDocumentsBy(new Document());
         Assert.assertNotNull(test);
@@ -152,8 +154,48 @@ public class DatabaseFacadeTest {
         Assert.assertEquals(dbObject.number,2);
     }
 
+    @Test
+    public void getDocumentsByFieldsValuesShouldReturnTwoDocuments(){
+        DatabaseFacade facade = new DatabaseFacade(getDbCollection());
+        Dictionary fields = new Hashtable();
+        fields.put("Name","A");
+        fields.put("SuperName","A");
+        String test = facade.getDocumentsByFields(fields,"or");
+        List<DbObject> dbObjects = gson.fromJson(test,new TypeToken<List<DbObject>>(){}.getType());
+        Assert.assertTrue(dbObjects.size() == 2);
+    }
 
 
+    @Test
+    public void getDocumentsByFieldsValuesShouldReturnOneDocument(){
+        DatabaseFacade facade = new DatabaseFacade(getDbCollection());
+        Dictionary fields = new Hashtable();
+        fields.put("Name","C");
+        fields.put("SuperName","C");
+        String test = facade.getDocumentsByFields(fields,"or");
+        List<DbObject> dbObjects = gson.fromJson(test,new TypeToken<List<DbObject>>(){}.getType());
+        System.out.println("SiZe: "+dbObjects.get(0).name);
+        Assert.assertTrue(dbObjects.size() == 1);
+    }
+
+    @Test
+    public void getDocumentsByFieldsShouldReturnEmptyList(){
+        DatabaseFacade facade = new DatabaseFacade(getDbCollection());
+        Dictionary fields = new Hashtable();
+        fields.put("Name","Z");
+        fields.put("SuperName","Z");
+        String test = facade.getDocumentsByFields(fields,"or");
+        List<DbObject> dbObjects = gson.fromJson(test,new TypeToken<List<DbObject>>(){}.getType());
+        Assert.assertTrue(dbObjects.size() == 0);
+    }
+
+    @Test
+    public void getDocumentsByNullFieldsShoudReturnAllDocuments(){
+        DatabaseFacade facade = new DatabaseFacade(getDbCollection());
+        String test = facade.getDocumentsByFields(null,"or");
+        List<DbObject> dbObjects = gson.fromJson(test,new TypeToken<List<DbObject>>(){}.getType());
+        Assert.assertTrue(dbObjects.size() == 2);
+    }
 
     private static void insertMockDocuments(){
         mockClient.getDatabase(DATABASE_NAME)
@@ -164,10 +206,12 @@ public class DatabaseFacadeTest {
     private static List<Document> getMockDocuments(){
         Document documentA = new Document();
         documentA.append("Name","A");
+        documentA.append("SuperName","C");
         documentA.append("Number",1);
 
         Document documentB = new Document();
         documentB.append("Name","B");
+        documentB.append("SuperName","A");
         documentB.append("Number",2);
 
         List<Document> documents = new ArrayList<>();

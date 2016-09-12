@@ -1,14 +1,22 @@
 package models.facade;
 
+import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
 import com.mongodb.Block;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.conversions.Bson;
+import java.util.Enumeration;
+
 
 import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Dictionary;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.or;
@@ -52,7 +60,14 @@ public class DatabaseFacade {
     }
 
     public String getDocumentsBy(String fieldName, String itemValue){
-        FindIterable<Document> iterable = _dbCollection.find(eq(fieldName,itemValue));
+        FindIterable<Document> iterable = _dbCollection.find(eq(fieldName,
+                caseInsensitive(itemValue)));
+        return processIterable(iterable);
+    }
+
+    public String getDocumentsByFields(Dictionary<String,String> fields, String logicalQueryOperator){
+        BasicDBObject object = getKeyValues(fields,logicalQueryOperator);
+        FindIterable<Document> iterable = _dbCollection.find(new Document(object));
         return processIterable(iterable);
     }
 
@@ -67,7 +82,24 @@ public class DatabaseFacade {
         return processIterable(iterable);
     }
 
+    private BasicDBObject getKeyValues(Dictionary<String,String> keyValues, String logicalQueryOperator){
+        if(keyValues!=null){
+            BasicDBList dbList = new BasicDBList();
+            for (Enumeration list = keyValues.keys(); list.hasMoreElements();) {
+                BasicDBObject object = new BasicDBObject();
+                 String key = (String) list.nextElement();
+                 String value = keyValues.get(key);
+                 object.append(key,caseInsensitive(value));
+                 dbList.add(object);
+            }
+            return new BasicDBObject("$"+logicalQueryOperator,dbList);
+        }
+        return new BasicDBObject();
+    }
 
+    private Pattern caseInsensitive(String value){
+        return Pattern.compile(value,Pattern.CASE_INSENSITIVE);
+    }
 
     private MongoCollection<Document> _dbCollection;
     private String logExceptionAndReturnEmptyString(String message){
