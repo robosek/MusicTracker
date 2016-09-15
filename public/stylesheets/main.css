@@ -33,10 +33,18 @@ body { padding-top: 90px; background-color: #E5E5E5;}
   background-color: orange;
 }
 
-.thead-inverse th {
+thead {
     color: white;
     background-color: #EA6248;
 }
+
+/*
+.thead-inverse th{
+    color: white;
+    background-color: #EA6248;
+}
+*/
+
 tbody{
     background-color: white;
 }

@@ -7,27 +7,18 @@
          <input required type="text" class="form-control" ng-model="songName" id="searchSongInput" placeholder="Is your favourite song or artist on top lists?">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary" ng-click="searchTrack(songName)">Search</button>
+            <button type="submit" class="btn btn-primary" ng-click="searchTrack(songName,searchForm.$valid)">Search</button>
         </div>
     </form>
     <br/>
-    <table class="table table-bordered" ng-show="!error && songs.length>0">
-            <thead class="thead-inverse">
-                <tr>
-                    <th>Number</th>
-                    <th>Song name</th>
-                    <th>Artist name</th>
-                    <th>Listeners</th>
-                    <th>Image</th>
-                </tr>
-            </thead>
+    <table ng-table="tableParams" class="table table-bordered" ng-show="!error && songs.length>0">
    <tbody>
-   <tr ng-repeat="song in songs | orderBy : '-listeners'">
-    <td>{{$index + 1}}</td>
-    <td>{{ song.name }}</td>
-    <td>{{ song.artist.name }}</td>
-    <td>{{ song.listeners }}</td>
-    <td><img ng-src="{{getImage(song)}}" class="img-rounded" width="34" height="34"></td>
+   <tr ng-repeat="song in $data">
+    <td data-title="'Number'">{{getCurrentRowIndex(tableParams,$index)}}</td>
+    <td data-title="'Song name'" sortable="'name'">{{ song.name }}</td>
+    <td data-title="'Artist name'" sortable="'artist.name'">{{ song.artist.name }}</td>
+    <td data-title="'Listeners'" sortable="'listeners'">{{ song.listeners }}</td>
+    <td data-title="'Image'"><img ng-src="{{getImage(song)}}" class="img-rounded" width="34" height="34"></td>
    </tr>    
    </tbody>
    </table>

@@ -7,10 +7,11 @@ require.config({
        loadingBar:"lib/angular-loading-bar/src/loading-bar",
        route:"lib/angular-route/angular-route",
        animate:"lib/angular-animate/angular-animate",
-       bootstrap:"lib/bootstrap/bootstrap",
+       table:"lib/ng-table/dist/ng-table",
+       bootstrap:"lib/bootstrap/dist/js/bootstrap.min",
        c3:"lib/c3/c3",
        d3:"lib/d3/d3",
-       jquery:"lib/dist/jquery"
+       jquery:"lib/jquery/dist/jquery.min"
    },
     shim:{
         angular:{
@@ -25,15 +26,21 @@ require.config({
         animate:{
             deps:['angular']
         },
+        table:{
+          deps:['angular']  
+        },
         c3:{
             exports:'c3',
             deps:['d3']
+        },
+        bootstrap:{
+            deps:['jquery']
         }
     }
 
 });
 
-require(["modules/app","directives/navbar","directives/alert","services/musicHttpService","services/chartService",
-    "controllers/mainController","controllers/statisticController"],function(app){
+require(["modules/app","directives/navbar","directives/alert","services/musicHttpService","services/chartService","services/tableService",
+    "controllers/mainController","controllers/statisticController","jquery","bootstrap"],function(app){
     app.init();
 });

@@ -1,15 +1,15 @@
-define(['modules/app','services/musicHttpService'],function(app,muiscHttpService){
-    app.controller("mainController",["$scope","musicHttpService",function($scope,musicHttpService){
+define(['modules/app','services/musicHttpService','services/tableService'],function(app,muiscHttpService){
+    app.controller("mainController",["$scope","musicHttpService","tableService",function($scope,musicHttpService,tableService){
 
         var imageNotFoundAddress = "../assets/images/noimagefound.jpg";
         
         $scope.error = false;
         $scope.showNotFoundSongs = false;
         
-        musicHttpService.getTracks(100).success(function(data){
+        musicHttpService.getTracks(300).success(function(data){
            $scope.songs = data;
-            //$scope.songs = data.tracks.track;
             var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
+            $scope.tableParams = tableService.createTable(25,data);
            $scope.showNotFoundSongs = !songsAreNotEmpty;
         }).error(function(error){
             $scope.error = true;
@@ -23,17 +23,25 @@ define(['modules/app','services/musicHttpService'],function(app,muiscHttpService
             return _image;
         }
         
-        $scope.searchTrack = function(name){
+        $scope.getCurrentRowIndex = function(tableParams, index){
+            return ((tableParams.page() - 1) * tableParams.count()) + (index +1);
+        };
+        
+        $scope.searchTrack = function(name,isValid){
+        if(isValid){
             musicHttpService.searchTrack(name).success(function(data){
             $scope.songs = data;
-            //$scope.songs = data.results.trackmatches.track;
             var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
+            $scope.tableParams = tableService.createTable(25,data);
             $scope.showNotFoundSongs = !songsAreNotEmpty;
         })
         .error(function(data){
              $scope.error = true;
         });
-        };
+        }
 
+            
+        };
+        
     }]);  
 });
