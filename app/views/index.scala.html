@@ -1,13 +1,13 @@
 @main {
-    <div class="container" ng-controller="mainController">
+    <div class="container" ng-controller="mainController" ng-init="getTracks()">
     <h1>Top songs in Poland</h1>
     <form name="searchForm" class="form-horizontal">
         <div class="form-group">
           <label for="searchSongInput">Search song</label>
-         <input required type="text" class="form-control" ng-model="songName" id="searchSongInput" placeholder="Is your favourite song or artist on top lists?">
+         <input type="text" class="form-control" ng-model="songName" id="searchSongInput" placeholder="Is your favourite song or artist on top lists?">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary" ng-click="searchTrack(songName,searchForm.$valid)">Search</button>
+            <button type="submit" class="btn btn-primary" ng-click="searchTrack(songName)">Search</button>
         </div>
     </form>
     <br/>

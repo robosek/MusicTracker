@@ -5,15 +5,18 @@ define(['modules/app','services/musicHttpService','services/tableService'],funct
         
         $scope.error = false;
         $scope.showNotFoundSongs = false;
-        
-        musicHttpService.getTracks(300).success(function(data){
-           $scope.songs = data;
-            var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
-            $scope.tableParams = tableService.createTable(25,data);
-           $scope.showNotFoundSongs = !songsAreNotEmpty;
-        }).error(function(error){
-            $scope.error = true;
-        });
+
+
+        $scope.getTracks = function () {
+            musicHttpService.getTracks(300).success(function(data){
+                $scope.songs = data;
+                var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
+                $scope.tableParams = tableService.createTable(25,data);
+                $scope.showNotFoundSongs = !songsAreNotEmpty;
+            }).error(function(error){
+                $scope.error = true;
+            });
+        }
 
         $scope.getImage = function (song) {
             var _image = song.image[0]['#text'];
@@ -27,8 +30,8 @@ define(['modules/app','services/musicHttpService','services/tableService'],funct
             return ((tableParams.page() - 1) * tableParams.count()) + (index +1);
         };
         
-        $scope.searchTrack = function(name,isValid){
-        if(isValid){
+        $scope.searchTrack = function(name){
+        if(name){
             musicHttpService.searchTrack(name).success(function(data){
             $scope.songs = data;
             var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
@@ -38,9 +41,9 @@ define(['modules/app','services/musicHttpService','services/tableService'],funct
         .error(function(data){
              $scope.error = true;
         });
+        }else{
+            $scope.getTracks();
         }
-
-            
         };
         
     }]);  
