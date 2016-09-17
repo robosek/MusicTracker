@@ -1,0 +1,41 @@
+@(artistIMDBid: String)
+
+<!--style="display: block;margin: 0 auto;"-->
+
+@main{
+    <div class="container" ng-controller="artistController" ng-init="getArtistInfo('@artistIMDBid')">
+        <div class="info" ng-show="!error">
+            <h1>{{artist.name}}</h1>
+            <br/>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <img class="info img-rounded" src="{{artist.image[3]['#text']}}"  />
+                    <br/>
+                </div>
+                <div class="col-md-8">
+                    <div class="container rounded-bordered-min">
+                        <h4>How many times played? <b>{{artist.stats.playcount}}</b></h4>
+                    </div>
+                    <br/>
+                    <div class="container rounded-bordered-min">
+                        <h4>How many listeners? <b>{{artist.stats.listeners}}</b> </h4>
+                    </div>
+                    <br/>
+                    <div class="container rounded-bordered-min" style="background-color:{{isOnTourColor(artist)}}">
+                        <h4>Is on tour right now? <b>{{isOnTourText(artist)}}</b></h4>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+            <br/>
+            <div class="rounded-bordered">
+                {{artist.bio.summary}}
+            </div>
+        </div>
+        <div ng-show="error">
+            <alert topic="Error occurred!" content="Data is not found. Sorry, try again later!"></alert>
+        </div>
+    </div>
+
+}

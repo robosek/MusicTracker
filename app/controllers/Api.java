@@ -1,6 +1,7 @@
 package controllers;
 
 import helpers.DatabaseContext;
+import models.facade.ArtistFacade;
 import models.facade.TracksFacade;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -19,6 +20,7 @@ public class Api extends Controller {
                 .build();
 
         _tracksFacade = new TracksFacade(dbContext.getDbCollection());
+        _artistFacade = new ArtistFacade(dbContext.getDatabase().getCollection("artists"));
     }
 
     public Result tracks(int number){
@@ -36,7 +38,13 @@ public class Api extends Controller {
         return ok(tracks);
     }
 
+    public Result artistInfoJson(String imdbId){
+        String artist = _artistFacade.getArtist(imdbId);
+        return ok(artist);
+    }
+
 
     private static TracksFacade _tracksFacade;
+    private  static ArtistFacade _artistFacade;
 
 }

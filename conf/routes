@@ -17,6 +17,11 @@ GET /tracksByName/:name            controllers.Api.tracksByName(name: String)
 # Statistics
 GET /statistics                    controllers.Application.statistics()
 
+# Artist info page
+GET /artist/:imdbid                controllers.Application.artistInfo(imdbid: String)
+
+# Artist info json
+GET /artistjson/:imdbid                controllers.Api.artistInfoJson(imdbid: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

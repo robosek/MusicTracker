@@ -63,4 +63,20 @@ h1{
     text-align: center;
 }
 
+.rounded-bordered {
+     border-radius: 25px;
+     padding: 20px;
+     background-color:white;
+     font-size: 16px;
+ }
+
+.rounded-bordered-min{
+     border-radius: 50px;
+     max-width: 500px;
+     padding:6px;
+     background-color: #EA6248;
+     color:white;
+     text-align: center;
+ }
+
 

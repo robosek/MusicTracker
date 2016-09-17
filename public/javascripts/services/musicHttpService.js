@@ -21,12 +21,18 @@ define(['modules/app'],function(app){
         var _tracksAreValid = function (tracks) {
             return tracks!= undefined && tracks.length > 0;
         }
+
+        var _getArtistInfo = function(artistIMDBid){
+            return $http.get('/artistjson/'+artistIMDBid);
+         }
         
         return{
             getTopTracks: _getTopTracks,
             searchTrack:_searchTrack,
             getTracks:_getTracks,
-            tracksAreValid:_tracksAreValid
+            tracksAreValid:_tracksAreValid,
+            getArtistInfo : _getArtistInfo
+
         }
     }]);
     

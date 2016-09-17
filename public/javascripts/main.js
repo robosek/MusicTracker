@@ -41,6 +41,6 @@ require.config({
 });
 
 require(["modules/app","directives/navbar","directives/alert","services/musicHttpService","services/chartService","services/tableService",
-    "controllers/mainController","controllers/statisticController","jquery","bootstrap"],function(app){
+    "controllers/mainController","controllers/statisticController","controllers/artistController","jquery","bootstrap"],function(app){
     app.init();
 });

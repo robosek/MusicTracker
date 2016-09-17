@@ -20,6 +20,9 @@ public class Application extends Controller {
         return ok(statistics.apply());
     }
 
+    public Result artistInfo(String artistIMDBid){
+        return ok(artist.render(artistIMDBid));
+    }
 
 
 }
