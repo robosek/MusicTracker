@@ -62,13 +62,13 @@ public class DatabaseContext {
         }
 
         public DatabaseContext build(){
-            _dbClient = initlializeMongoClient();
+            _dbClient = initializeMongoClient();
             _db = _dbClient.getDatabase(_databaseName);
             _dbCollection = _db.getCollection(_collectionName);
             return new DatabaseContext(this);
         }
 
-        private MongoClient initlializeMongoClient(){
+        private MongoClient initializeMongoClient(){
             if(_credentials!=null){
                 return new MongoClient(_serverAddress,Arrays.asList(_credentials));
             }

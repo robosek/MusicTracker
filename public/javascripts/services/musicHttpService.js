@@ -18,8 +18,8 @@ define(['modules/app'],function(app){
             //return $http.get("http://ws.audioscrobbler.com/2.0/?method=track.search&track="+name+"&api_key=xxx&format=json");
         };
 
-        var _tracksAreValid = function (tracks) {
-            return tracks!= undefined && tracks.length > 0;
+        var _itemsAreValid = function (items) {
+            return items!= undefined && items.length > 0;
         }
 
         var _getArtistInfo = function(artistIMDBid){
@@ -30,7 +30,7 @@ define(['modules/app'],function(app){
             getTopTracks: _getTopTracks,
             searchTrack:_searchTrack,
             getTracks:_getTracks,
-            tracksAreValid:_tracksAreValid,
+            itemsAreValid:_itemsAreValid,
             getArtistInfo : _getArtistInfo
 
         }

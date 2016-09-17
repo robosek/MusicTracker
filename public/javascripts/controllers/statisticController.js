@@ -12,7 +12,7 @@ define(['modules/app','services/musicHttpService','services/chartService'],
 
             musicHttpService.getTopTracks($scope.songsNumber).success(function(data){
                 $scope.songs = data;
-                var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
+                var songsAreNotEmpty = musicHttpService.itemsAreValid(data);
                 $scope.showNotFoundSongs = !songsAreNotEmpty;
                 chartService.generateBarChart(data);
             }).error(function(error){

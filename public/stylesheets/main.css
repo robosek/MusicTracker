@@ -79,4 +79,28 @@ h1{
      text-align: center;
  }
 
+.tag-min{
+    border-radius: 50px;
+    max-width: 100px;
+    padding:3px;
+    background-color: white;
+    color:black;
+    text-align: center;
+}
+
+.artist-description{
+    max-width: 500px;
+    padding:15px;
+    background-color: white;
+    color:black;
+    text-align: justify;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+
+.carousel {
+    height: 250px;
+}
+
 

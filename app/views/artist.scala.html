@@ -1,19 +1,27 @@
 @(artistIMDBid: String)
 
-<!--style="display: block;margin: 0 auto;"-->
-
 @main{
     <div class="container" ng-controller="artistController" ng-init="getArtistInfo('@artistIMDBid')">
-        <div class="info" ng-show="!error">
+        <div class="info" ng-show="!error && artist">
             <h1>{{artist.name}}</h1>
             <br/>
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-2">
-                    <img class="info img-rounded" src="{{artist.image[3]['#text']}}"  />
+                    <img class="info img-rounded" src="{{getImage(artist,3)}}"  />
                     <br/>
-                </div>
+                    <h3>Tags</h3>
+                    <ul style="list-style-type:none;" ng-repeat="tag in artist.tags.tag">
+                        <li><div class="tag-min">
+                            <a href="{{tag.url}}">{{tag.name}}</a>
+                        </div></li>
+                    </ul>
+               </div>
                 <div class="col-md-8">
+                    <div class="container artist-description">
+                        <p ng-bind-html="artistDescriptionHtml"></p>
+                    </div>
+                    <br/>
                     <div class="container rounded-bordered-min">
                         <h4>How many times played? <b>{{artist.stats.playcount}}</b></h4>
                     </div>
@@ -23,18 +31,28 @@
                     </div>
                     <br/>
                     <div class="container rounded-bordered-min" style="background-color:{{isOnTourColor(artist)}}">
-                        <h4>Is on tour right now? <b>{{isOnTourText(artist)}}</b></h4>
+                        <h4>On tour right now? <b>{{isOnTourText(artist)}}</b></h4>
                     </div>
                     <br/>
                 </div>
             </div>
             <br/>
-            <div class="rounded-bordered">
-                {{artist.bio.summary}}
+
+            <div class="container" style="max-width: 300px;">
+                <h2>Similar artists</h2>
+                <ul rn-carousel rn-carousel-auto-slide="6" rn-carousel-duration="300" class="carousel" >
+                    <li ng-repeat="similar in artist.similar.artist">
+                        <img  class="img-rounded img-responsive" src="{{ getImage(similar,2) }}" />
+                        <h4><a href="{{similar.url}}">{{similar.name}}</a></h4>
+                    </li>
+                </ul>
             </div>
-        </div>
+    </div>
         <div ng-show="error">
             <alert topic="Error occurred!" content="Data is not found. Sorry, try again later!"></alert>
+        </div>
+        <div ng-show="showNotFoundArtist">
+            <alert topic="Artist has not been found!" content="Unfortunately, this artist isn't in out database. "></alert>
         </div>
     </div>
 

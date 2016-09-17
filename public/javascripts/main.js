@@ -8,6 +8,9 @@ require.config({
        route:"lib/angular-route/angular-route",
        animate:"lib/angular-animate/angular-animate",
        table:"lib/ng-table/dist/ng-table",
+       sanitize:"lib/angular-sanitize/angular-sanitize",
+       touch:"lib/angular-touch/angular-touch.min",
+       carousel:"lib/angular-carousel/dist/angular-carousel.min",
        bootstrap:"lib/bootstrap/dist/js/bootstrap.min",
        c3:"lib/c3/c3",
        d3:"lib/d3/d3",
@@ -29,6 +32,15 @@ require.config({
         table:{
           deps:['angular']  
         },
+        sanitize:{
+          deps:['angular']
+        },
+        touch:{
+          deps:['angular']
+        },
+        carousel:{
+          deps:['angular','touch']
+        },
         c3:{
             exports:'c3',
             deps:['d3']
@@ -40,7 +52,9 @@ require.config({
 
 });
 
-require(["modules/app","directives/navbar","directives/alert","services/musicHttpService","services/chartService","services/tableService",
-    "controllers/mainController","controllers/statisticController","controllers/artistController","jquery","bootstrap"],function(app){
+require(["modules/app","directives/navbar","directives/alert","services/musicHttpService","services/chartService",
+    "services/tableService", "services/imageService" ,"controllers/mainController","controllers/statisticController",
+    "controllers/artistController","jquery",
+    "bootstrap"],function(app){
     app.init();
 });

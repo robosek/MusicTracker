@@ -1,16 +1,18 @@
-define(['modules/app','services/musicHttpService','services/tableService'],function(app,muiscHttpService){
-    app.controller("mainController",["$scope","musicHttpService","tableService",function($scope,musicHttpService,tableService){
+define(['modules/app','services/musicHttpService','services/tableService','services/imageService']
+    ,function(app,muiscHttpService,imageService){
+    app.controller("mainController",["$scope","musicHttpService","tableService",'imageService',
+        function($scope,musicHttpService,tableService,imageService){
 
-        var imageNotFoundAddress = "../assets/images/noimagefound.jpg";
-        
+        var noArtistCode = "xxx";
+
         $scope.error = false;
         $scope.showNotFoundSongs = false;
 
 
         $scope.getTracks = function () {
-            musicHttpService.getTracks(300).success(function(data){
+            musicHttpService.getTracks(500).success(function(data){
                 $scope.songs = data;
-                var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
+                var songsAreNotEmpty = musicHttpService.itemsAreValid(data);
                 $scope.tableParams = tableService.createTable(25,data);
                 $scope.showNotFoundSongs = !songsAreNotEmpty;
             }).error(function(error){
@@ -19,11 +21,15 @@ define(['modules/app','services/musicHttpService','services/tableService'],funct
         }
 
         $scope.getImage = function (song) {
-            var _image = song.image[0]['#text'];
-            if(_image === undefined || !_image.startsWith("https")){
-                _image = imageNotFoundAddress;
+            return imageService.getImage(song,0);
+        }
+
+        $scope.getArtistIMDBid = function (artist) {
+            if(artist && artist.mbid!=''){
+                return artist.mbid;
             }
-            return _image;
+            else
+                return noArtistCode;
         }
         
         $scope.getCurrentRowIndex = function(tableParams, index){
@@ -34,7 +40,7 @@ define(['modules/app','services/musicHttpService','services/tableService'],funct
         if(name){
             musicHttpService.searchTrack(name).success(function(data){
             $scope.songs = data;
-            var songsAreNotEmpty = musicHttpService.tracksAreValid(data);
+            var songsAreNotEmpty = musicHttpService.itemsAreValid(data);
             $scope.tableParams = tableService.createTable(25,data);
             $scope.showNotFoundSongs = !songsAreNotEmpty;
         })

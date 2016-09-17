@@ -16,7 +16,7 @@
    <tr ng-repeat="song in $data">
     <td data-title="'Number'">{{getCurrentRowIndex(tableParams,$index)}}</td>
     <td data-title="'Song name'" sortable="'name'">{{ song.name }}</td>
-       <td data-title="'Artist name'" sortable="'artist.name'"><a href="/artist/{{song.artist.mbid}}">{{ song.artist.name }}</a></td>
+       <td data-title="'Artist name'" sortable="'artist.name'"><a href="/artist/{{getArtistIMDBid(song.artist)}}">{{ song.artist.name }}</a></td>
     <td data-title="'Listeners'" sortable="'listeners'">{{ song.listeners }}</td>
     <td data-title="'Image'"><img ng-src="{{getImage(song)}}" class="img-rounded" width="34" height="34"></td>
    </tr>    
