@@ -19,3 +19,4 @@ libraryDependencies += "com.github.fakemongo" % "fongo" % "2.0.6"
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
+

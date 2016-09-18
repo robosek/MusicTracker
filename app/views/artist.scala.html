@@ -1,7 +1,7 @@
 @(artistIMDBid: String)
 
 @main{
-    <div class="container" ng-controller="artistController" ng-init="getArtistInfo('@artistIMDBid')">
+    <div class="container container-radius" ng-controller="artistController" ng-init="getArtistInfo('@artistIMDBid')" >
         <div class="info" ng-show="!error && artist">
             <h1>{{artist.name}}</h1>
             <br/>
@@ -42,7 +42,7 @@
                 <h2>Similar artists</h2>
                 <ul rn-carousel rn-carousel-auto-slide="6" rn-carousel-duration="300" class="carousel" >
                     <li ng-repeat="similar in artist.similar.artist">
-                        <img  class="img-rounded img-responsive" src="{{ getImage(similar,2) }}" />
+                        <img  class="img-thumbnail img-responsive" src="{{ getImage(similar,2) }}" />
                         <h4><a href="{{similar.url}}">{{similar.name}}</a></h4>
                     </li>
                 </ul>

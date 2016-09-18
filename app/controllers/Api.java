@@ -1,26 +1,33 @@
 package controllers;
 
+import helpers.CustomConfiguration;
 import helpers.DatabaseContext;
 import models.facade.ArtistFacade;
 import models.facade.TracksFacade;
+import play.Configuration;
+import play.Play;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+import javax.inject.Inject;
 
 /**
  * Created by robert on 10.09.16.
  */
 public class Api extends Controller {
 
-    public Api(){
-        DatabaseContext dbContext = new DatabaseContext
+    @Inject
+    public Api(CustomConfiguration configuration){
+        _dbContext = new DatabaseContext
                 .DbContextBuilder("music")
-                .address("",0)
-                .credentials("","".toCharArray())
+                .address(configuration.getMongoHost(),configuration.getMongoPort())
+                .credentials(configuration.getMongoUsername(),
+                        configuration.getMongoPassword().toCharArray())
                 .collectionName("tracks")
                 .build();
 
-        _tracksFacade = new TracksFacade(dbContext.getDbCollection());
-        _artistFacade = new ArtistFacade(dbContext.getDatabase().getCollection("artists"));
+        _tracksFacade = new TracksFacade(_dbContext.getDbCollection());
+        _artistFacade = new ArtistFacade(_dbContext.getDatabase().getCollection("artists"));
     }
 
     public Result tracks(int number){
@@ -43,8 +50,13 @@ public class Api extends Controller {
         return ok(artist);
     }
 
+    @Override
+    protected void finalize() throws Exception{
+        if(_dbContext!=null) _dbContext.closeConnection();
+    }
 
-    private static TracksFacade _tracksFacade;
-    private  static ArtistFacade _artistFacade;
+    private DatabaseContext _dbContext;
+    private TracksFacade _tracksFacade;
+    private ArtistFacade _artistFacade;
 
 }
