@@ -38,13 +38,6 @@ thead {
     background-color: #EA6248;
 }
 
-/*
-.thead-inverse th{
-    color: white;
-    background-color: #EA6248;
-}
-*/
-
 tbody{
     background-color: white;
 }
@@ -82,7 +75,7 @@ h1{
 .tag-min{
     border-radius: 50px;
     max-width: 100px;
-    padding:3px;
+    padding:8px;
     background-color: #e0e0ff;
     color:black;
     text-align: center;
@@ -96,7 +89,14 @@ h1{
     text-align: justify;
     font-size: 17px;
     border-radius: 5px;
-    border: 9px black;
+}
+
+.tag-description{
+    max-width: 500px;
+    padding:25px;
+    text-align: justify;
+    font-size: 17px;
+    padding-left:25%;
 }
 
 .carousel {
@@ -106,6 +106,31 @@ h1{
 .container-radius{
     border-radius: 10px;
     background-color: white;
+}
+
+.header-logo{
+    background-color:#66b8d3;
+    border-top-left-radius:10px;
+    border-bottom-left-radius:95px;
+    border-bottom-right-radius:95px;
+    border-top-right-radius:0px;
+}
+
+.header-title{
+    background-color:#66b8d3;
+    padding:50px;
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;
+    border-bottom-right-radius:0px;
+    border-top-right-radius:10px;
+    color:white;
+
+}
+
+@media only screen and (max-width: 1000px) {
+    [class*="header-"] {
+        border-radius:0px;
+    }
 }
 
 

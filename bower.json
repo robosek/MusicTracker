@@ -13,6 +13,7 @@
     "c3": "^0.4.11",
     "angular-animate": "^1.5.8",
     "ng-table": "^1.0.0",
-    "angular-sanitize": "^1.5.8"
+    "angular-sanitize": "^1.5.8",
+    "angular-carousel": "^1.0.1"
   }
 }

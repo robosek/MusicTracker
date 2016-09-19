@@ -1,24 +1,31 @@
 @(artistIMDBid: String)
 
 @main{
-    <div class="container container-radius" ng-controller="artistController" ng-init="getArtistInfo('@artistIMDBid')" >
-        <div class="info" ng-show="!error && artist">
-            <h1>{{artist.name}}</h1>
+    <div class="container" ng-controller="artistController" ng-init="getArtistInfo('@artistIMDBid')" >
+        <div class="container container-radius" ng-show="!error && artist">
+            <div class="row">
+                <div class="col-md-4 header-logo">
+                    <img class="img-circle img-responsive" style="padding:10px;" src="{{getImage(artist,3)}}"  />
+                </div>
+                <div class="col-md-8 header-title">
+                   <h1>{{artist.name}}</h1>
+                </div>
+            </div>
             <br/>
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-2">
-                    <img class="info img-rounded" src="{{getImage(artist,3)}}"  />
-                    <br/>
-                    <h3>Tags</h3>
+                <div class="col-md-4">
+                    <div class="container tag-description">
+                        <h3>Tags</h3>
                     <ul style="list-style-type:none;" ng-repeat="tag in artist.tags.tag">
                         <li><div class="tag-min">
                             <a href="{{tag.url}}">{{tag.name}}</a>
                         </div></li>
                     </ul>
+                    </div>
                </div>
                 <div class="col-md-8">
                     <div class="container artist-description">
+                         <h3>About artist</h3>
                         <p ng-bind-html="artistDescriptionHtml"></p>
                     </div>
                     <br/>
