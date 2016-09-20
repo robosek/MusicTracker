@@ -74,10 +74,10 @@ h1{
 
 .tag-min{
     border-radius: 50px;
-    max-width: 100px;
+    max-width: 150px;
     padding:8px;
     background-color: #e0e0ff;
-    color:black;
+    color:white;
     text-align: center;
 }
 
