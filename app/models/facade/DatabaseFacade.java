@@ -1,10 +1,10 @@
 package models.facade;
 
-import com.mongodb.BasicDBList;
-import com.mongodb.BasicDBObject;
-import com.mongodb.Block;
+import com.mongodb.*;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoIterable;
 import org.bson.BsonDocument;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -18,8 +18,10 @@ import java.util.Dictionary;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.or;
+import static com.mongodb.client.model.Filters.*;
+import static java.util.Arrays.asList;
+import static jdk.nashorn.internal.objects.NativeFunction.function;
+
 
 /**
  * Created by robert on 06.09.16.
@@ -82,6 +84,13 @@ public class DatabaseFacade {
         return processIterable(iterable);
     }
 
+    public String getAggregateDocumentsByFiled(String filedValue){
+        AggregateIterable<Document> iterable = _dbCollection.aggregate(asList(
+        new Document("$group", new Document("_id", "$"+filedValue)
+                .append("count", new Document("$sum", 1)))));
+        return processIterable(iterable);
+    }
+
     private BasicDBObject getKeyValues(Dictionary<String,String> keyValues, String logicalQueryOperator){
         if(keyValues!=null){
             BasicDBList dbList = new BasicDBList();
@@ -106,7 +115,7 @@ public class DatabaseFacade {
         System.out.println(message);
         return EMPTY_STRING;
     }
-    private String processIterable(FindIterable<Document> iterable){
+    private String processIterable(MongoIterable<Document> iterable){
         try{
             final List<String> results = new ArrayList();
             iterable.forEach(new Block<Document>() {

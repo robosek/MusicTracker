@@ -1,14 +1,19 @@
 @main{
-    <div ng-controller="statisticController" class="container container-radius">
-    <h1>Top {{songsNumber}} songs on the board!</h1>
+    <div ng-controller="statisticController" class="container">
+    <div class="container-radius" ng-show="!error && !showNotFoundSongs && !showNotFoundOnTour && songs">
+        <br/>
+    <h1>Top {{songsNumber}} songs on the chart!</h1>
         <div id="chart" ></div>
-
+     <h1>How many artists are on tour right know ?</h1>
+    <div id="chartDonut"></div>
+        </div>
         <div ng-show="error">
             <alert topic="Error occurred!" content="Data is not found. Sorry, try again later!"></alert>
         </div>
-        <div ng-show="showNotFoundSongs">
+        <div ng-show="showNotFoundSongs || showNotFoundOnTour">
             <alert topic="No songs have been found!" content="Unfortunately, there are no songs to display. Try again."></alert>
         </div>
     </div>
+
 
 }

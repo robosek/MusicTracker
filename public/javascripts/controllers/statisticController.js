@@ -9,6 +9,7 @@ define(['modules/app','services/musicHttpService','services/chartService'],
             $scope.songsNumber = 15;
             $scope.error = false;
             $scope.showNotFoundSongs = false;
+            $scope.showNotFoundOnTour = false;
 
             musicHttpService.getTopTracks($scope.songsNumber).success(function(data){
                 $scope.songs = data;
@@ -17,6 +18,15 @@ define(['modules/app','services/musicHttpService','services/chartService'],
                 chartService.generateBarChart(data);
             }).error(function(error){
                 $scope.error = true;
+            });
+
+            musicHttpService.getOnTourStatistics().success(function (data) {
+                $scope.onTourInfo = data;
+                var onTourInfoIsValid = musicHttpService.itemsAreValid(data);
+                $scope.showNotFoundOnTour = !onTourInfoIsValid;
+                chartService.generateDonutChart(data);
+            }).error(function(error){
+               $scope.error = true;
             });
 
         }]);

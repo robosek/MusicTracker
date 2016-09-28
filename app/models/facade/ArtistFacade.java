@@ -16,5 +16,9 @@ public class ArtistFacade {
         return _dbFacade.getDocumentsBy("mbid",imdbId);
     }
 
+    public String getArtistsOnTourStatistics(){
+        return _dbFacade.getAggregateDocumentsByFiled("ontour");
+    }
+
     private DatabaseFacade _dbFacade;
 }

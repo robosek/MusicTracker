@@ -23,7 +23,7 @@ define(['modules/app','services/musicHttpService','services/imageService'],funct
 
             $scope.isOnTourText = function(artist){
                 if(artist){
-                             return artist.ontour == 0 ? "No" : "Yes";
+                  return artist.ontour == 0 ? "No" : "Yes";
                 }
             }
 

@@ -9,13 +9,10 @@ define(['modules/app'],function(app){
 
         var _getTopTracks = function(number){
              return $http.get("toptracks/"+number);
-             //return $http.get("http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=poland&api_key=xxx&format=json&limit="+number);
-             
         };
         
         var _searchTrack = function(name){
             return $http.get("tracksByName/"+name);
-            //return $http.get("http://ws.audioscrobbler.com/2.0/?method=track.search&track="+name+"&api_key=xxx&format=json");
         };
 
         var _itemsAreValid = function (items) {
@@ -25,13 +22,18 @@ define(['modules/app'],function(app){
         var _getArtistInfo = function(artistIMDBid){
             return $http.get('/artistjson/'+artistIMDBid);
          }
+
+         var _getOnTourStatistics = function () {
+             return $http.get('/ontourjson');
+         }
         
         return{
             getTopTracks: _getTopTracks,
             searchTrack:_searchTrack,
             getTracks:_getTracks,
             itemsAreValid:_itemsAreValid,
-            getArtistInfo : _getArtistInfo
+            getArtistInfo : _getArtistInfo,
+            getOnTourStatistics:_getOnTourStatistics
 
         }
     }]);

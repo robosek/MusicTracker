@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.connection.ServerVersion;
+import databaseTest.requiredClasses.DbAggregateObject;
 import databaseTest.requiredClasses.DbObject;
 import models.facade.DatabaseFacade;
 import org.bson.Document;
@@ -174,7 +175,6 @@ public class DatabaseFacadeTest {
         fields.put("SuperName","C");
         String test = facade.getDocumentsByFields(fields,"or");
         List<DbObject> dbObjects = gson.fromJson(test,new TypeToken<List<DbObject>>(){}.getType());
-        System.out.println("SiZe: "+dbObjects.get(0).name);
         Assert.assertTrue(dbObjects.size() == 1);
     }
 
@@ -190,12 +190,27 @@ public class DatabaseFacadeTest {
     }
 
     @Test
-    public void getDocumentsByNullFieldsShoudReturnAllDocuments(){
+    public void getDocumentsByNullFieldsShouldReturnAllDocuments(){
         DatabaseFacade facade = new DatabaseFacade(getDbCollection());
         String test = facade.getDocumentsByFields(null,"or");
         List<DbObject> dbObjects = gson.fromJson(test,new TypeToken<List<DbObject>>(){}.getType());
         Assert.assertTrue(dbObjects.size() == 2);
     }
+
+    @Test
+    public void getAggregateDocumentsByFieldShouldReturnFieldWithNumberOfOccurrences(){
+        DatabaseFacade facade = new DatabaseFacade(getDbCollection());
+        String test = facade.getAggregateDocumentsByFiled("Aggregate");
+        List<DbAggregateObject> dbObjects = gson.fromJson(test,new TypeToken<List<DbAggregateObject>>(){}.getType());
+        DbAggregateObject dbObject = dbObjects.get(0);
+        Assert.assertNotNull(dbObjects);
+        Assert.assertTrue(dbObjects.size()==1);
+        Assert.assertTrue(dbObject.name.equals("AG"));
+        Assert.assertTrue(dbObject.count == 2);
+
+    }
+
+
 
     private static void insertMockDocuments(){
         mockClient.getDatabase(DATABASE_NAME)
@@ -208,11 +223,14 @@ public class DatabaseFacadeTest {
         documentA.append("Name","A");
         documentA.append("SuperName","C");
         documentA.append("Number",1);
+        documentA.append("Aggregate","AG");
 
         Document documentB = new Document();
         documentB.append("Name","B");
         documentB.append("SuperName","A");
         documentB.append("Number",2);
+        documentB.append("Aggregate","AG");
+
 
         List<Document> documents = new ArrayList<>();
         documents.add(documentA);

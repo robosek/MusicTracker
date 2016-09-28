@@ -50,6 +50,11 @@ public class Api extends Controller {
         return ok(artist);
     }
 
+    public Result onTour(){
+        String artistsOnTour = _artistFacade.getArtistsOnTourStatistics();
+        return ok(artistsOnTour);
+    }
+
     @Override
     protected void finalize() throws Exception{
         if(_dbContext!=null) _dbContext.closeConnection();
