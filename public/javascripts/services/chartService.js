@@ -5,7 +5,7 @@ define(['modules/app','c3'],function (app,c3) {
 
     app.factory('chartService',function () {
 
-        var _generateDonutChart = function (dataJson) {
+        var _generateOnTourDonutChart = function (dataJson) {
 
             var preparedDataJson = prepareDataOnTour(dataJson);
             var chart = c3.generate({
@@ -48,7 +48,7 @@ define(['modules/app','c3'],function (app,c3) {
         }
 
 
-        var _generateBarChart = function (dataJson) {
+        var _generateTopTracksBarChart = function (dataJson) {
 
             var chart = c3.generate({
                 data: {
@@ -73,14 +73,13 @@ define(['modules/app','c3'],function (app,c3) {
                     }
                 }
             });
-
-
+        
 
         };
 
         return{
-            generateBarChart: _generateBarChart,
-            generateDonutChart:_generateDonutChart
+            generateTopTracksBarChart: _generateTopTracksBarChart,
+            generateOnTourDonutChart:_generateOnTourDonutChart
         }
     });
 

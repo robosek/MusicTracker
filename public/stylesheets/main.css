@@ -54,6 +54,7 @@ tbody{
 
 h1{
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 .rounded-bordered {
@@ -106,6 +107,7 @@ h1{
 .container-radius{
     border-radius: 10px;
     background-color: white;
+    padding: 0px;
 }
 
 .header-logo{

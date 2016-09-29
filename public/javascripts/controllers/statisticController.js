@@ -15,7 +15,7 @@ define(['modules/app','services/musicHttpService','services/chartService'],
                 $scope.songs = data;
                 var songsAreNotEmpty = musicHttpService.itemsAreValid(data);
                 $scope.showNotFoundSongs = !songsAreNotEmpty;
-                chartService.generateBarChart(data);
+                chartService.generateTopTracksBarChart(data);
             }).error(function(error){
                 $scope.error = true;
             });
@@ -24,7 +24,7 @@ define(['modules/app','services/musicHttpService','services/chartService'],
                 $scope.onTourInfo = data;
                 var onTourInfoIsValid = musicHttpService.itemsAreValid(data);
                 $scope.showNotFoundOnTour = !onTourInfoIsValid;
-                chartService.generateDonutChart(data);
+                chartService.generateOnTourDonutChart(data);
             }).error(function(error){
                $scope.error = true;
             });
