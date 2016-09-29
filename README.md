@@ -18,6 +18,7 @@
 </ul>
 <h2>Change log</h2>
 <ul>
+    <li>2016-09-29 - Added dashboard with two charts</li>
     <li>2016-09-20 - Added artist details page</li>
     <li>2016-09-15 - Added pagination and sorting on tracks table</li>
     <li>2016-09-12 - Added case insensitive searching tracks</li>
@@ -27,6 +28,6 @@
 <ul>
     <li><s>Searching songs by upper and lower case letters</s></li>
     <li><s>Artist details page</s></li>
-    <li>Dashboard</li>
+    <li><s>Dashboard</s>s></li>
     <li>Integrating project with Jasmine and Karma</li>
 </ul>
