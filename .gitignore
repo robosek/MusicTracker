@@ -15,4 +15,5 @@ dist
 /.settings
 public/javascripts/lib
 db.txt
+public/spec/lib
     

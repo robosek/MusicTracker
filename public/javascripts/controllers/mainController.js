@@ -1,5 +1,5 @@
 define(['modules/app','services/musicHttpService','services/tableService','services/imageService']
-    ,function(app,muiscHttpService,imageService){
+    ,function(app, tableService,musicHttpService,imageService){
     app.controller("mainController",["$scope","musicHttpService","tableService",'imageService',
         function($scope,musicHttpService,tableService,imageService){
 

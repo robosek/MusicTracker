@@ -22,7 +22,7 @@ define(['modules/app','services/musicHttpService','services/imageService'],funct
             };
 
             $scope.isOnTourText = function(artist){
-                if(artist){
+                if(artist && artist.ontour != undefined){
                   return artist.ontour == 0 ? "No" : "Yes";
                 }
             }
@@ -35,7 +35,7 @@ define(['modules/app','services/musicHttpService','services/imageService'],funct
 
 
             $scope.isOnTourColor = function(artist){
-                if(artist){
+                if(artist && artist.ontour != undefined){
                     return artist.ontour == 0 ? "#e7c3c3" : "green";
                 }
             }
