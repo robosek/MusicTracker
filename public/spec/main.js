@@ -76,7 +76,8 @@ require.config({
 require(['jasmine-boot'],function(boot){
 
     require(['hello_test.spec.js','controllers_specs/mainController.spec',
-            'controllers_specs/artistController.spec','controllers_specs/statisticController.spec']
+            'controllers_specs/artistController.spec','controllers_specs/statisticController.spec'
+        ,'services_specs/imageService.spec','services_specs/musicHttpService.spec']
         ,function(test){
         window.onload();
     });
