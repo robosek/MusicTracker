@@ -18,6 +18,7 @@
 </ul>
 <h2>Change log</h2>
 <ul>
+	<li>2016-10-05 - Integrated project with Jasmine and Karma</li>
     <li>2016-09-29 - Added dashboard with two charts</li>
     <li>2016-09-20 - Added artist details page</li>
     <li>2016-09-15 - Added pagination and sorting on tracks table</li>
@@ -26,8 +27,8 @@
 </ul>
 <h2>Future releases</h2>
 <ul>
-    <li><s>Searching songs by upper and lower case letters</s></li>
+    <li><s>Search songs by upper and lower case letters</s></li>
     <li><s>Artist details page</s></li>
-    <li><s>Dashboard</s>s></li>
-    <li>Integrating project with Jasmine and Karma</li>
+    <li><s>Dashboard</s></li>
+    <li><s>Integration with Jasmine and Karma</s></li>
 </ul>
