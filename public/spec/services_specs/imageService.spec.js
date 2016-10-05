@@ -76,4 +76,3 @@ define(['modules/app','services/imageService'], (app,service) => {
     })
 
 })
->>>>>>> 271c94679bdade926184b79cbf04321d7afb518e
