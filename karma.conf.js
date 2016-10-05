@@ -34,7 +34,8 @@ module.exports = function(config) {
       {pattern: 'public/javascripts/modules/*.js', included: false},
       {pattern: 'public/javascripts/services/*.js', included: false},
       {pattern: 'public/javascripts/services/*.js', included: false},
-      {pattern: 'public/spec/controllers_specs/*.js', included: false}
+      {pattern: 'public/spec/controllers_specs/*.js', included: false},
+	  {pattern: 'public/spec/services_specs/*.js', included: false}
     ],
 
 

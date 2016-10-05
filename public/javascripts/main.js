@@ -10,6 +10,7 @@ require.config({
        table:"lib/ng-table/dist/ng-table",
        sanitize:"lib/angular-sanitize/angular-sanitize",
        touch:"lib/angular-touch/angular-touch.min",
+       mocks:"lib/angular-mocks/angular-mocks",
        carousel:"lib/angular-carousel/dist/angular-carousel.min",
        bootstrap:"lib/bootstrap/dist/js/bootstrap.min",
        c3:"lib/c3/c3",
@@ -37,6 +38,9 @@ require.config({
         },
         touch:{
           deps:['angular']
+        },
+        mocks:{
+        deps:['angular']
         },
         carousel:{
           deps:['angular','touch']
