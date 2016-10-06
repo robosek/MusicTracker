@@ -13,7 +13,6 @@ dist
 /.project
 /RUNNING_PID
 /.settings
-public/javascripts/lib
 db.txt
 public/spec/lib
 test
@@ -22,4 +21,6 @@ karma.conf.js
 README.md
 public/javascripts/build.json
 public/javascripts/r.js
+public/javascripts/lib
+!public/javascripts/lib/requirejs/require.js
     
