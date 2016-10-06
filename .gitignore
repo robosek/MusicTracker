@@ -16,5 +16,10 @@ dist
 public/javascripts/lib
 db.txt
 public/spec/lib
-public/spec/directives_specs
+test
+public/spec
+karma.conf.js
+README.md
+public/javascripts/build.json
+public/javascripts/r.js
     
