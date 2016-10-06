@@ -11,6 +11,7 @@ define(['modules/app','services/musicHttpService','services/tableService','servi
 
         $scope.getTracks = function () {
             musicHttpService.getTracks(500).success(function(data){
+                 $scope.error = false;
                 $scope.songs = data;
                 var songsAreNotEmpty = musicHttpService.itemsAreValid(data);
                 $scope.tableParams = tableService.createTable(25,data);
@@ -38,6 +39,7 @@ define(['modules/app','services/musicHttpService','services/tableService','servi
         
         $scope.searchTrack = function(name){
         if(name){
+            $scope.error = false;
             musicHttpService.searchTrack(name).success(function(data){
             $scope.songs = data;
             var songsAreNotEmpty = musicHttpService.itemsAreValid(data);
