@@ -1,5 +1,7 @@
 <h1>Music tracker - track top hits</h1>
 <h2>Web application developed in java play framework, mongo database and web frameworks</h2>
+<h2>Address</h2>
+https://musictrackerapp.herokuapp.com
 <h2>Main technologies</h2>
 <ul>
 <li>Java</li>
