@@ -11,6 +11,12 @@
         </div>
     </form>
     <br/>
+    <div ng-show="error">
+        <alert topic="Error occurred!" content="Data is not found. Sorry, try again later!"></alert>
+    </div>
+    <div ng-show="showNotFoundSongs">
+        <alert topic="No songs have been found!" content="Unfortunately, there are no songs to display. Try again."></alert>
+    </div>
     <table ng-table="tableParams" class="table table-bordered" ng-show="!error && songs.length>0">
    <tbody>
    <tr ng-repeat="song in $data">
@@ -25,11 +31,5 @@
    </tr>    
    </tbody>
    </table>
-   <div ng-show="error">
-        <alert topic="Error occurred!" content="Data is not found. Sorry, try again later!"></alert>
-    </div>
-    <div ng-show="showNotFoundSongs">
-        <alert topic="No songs have been found!" content="Unfortunately, there are no songs to display. Try again."></alert>
-    </div>
     </div>
 }
