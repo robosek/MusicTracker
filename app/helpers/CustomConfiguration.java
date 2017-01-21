@@ -1,7 +1,10 @@
 package helpers;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import play.Configuration;
 import play.Play;
+
+import javax.inject.Inject;
 
 /**
  * Created by robert on 18.09.16.
@@ -21,15 +24,16 @@ public class CustomConfiguration {
         return _mongoPort;
     }
 
-    public CustomConfiguration(){
-        _configuration = Play.application().configuration();
-        initializeConfiguration();
-    }
-
+    @Inject
     public CustomConfiguration(Configuration configuration){
         _configuration = configuration;
         initializeConfiguration();
     }
+
+//    public CustomConfiguration(Configuration configuration){
+//        _configuration = configuration;
+//        initializeConfiguration();
+//    }
 
 
     private void initializeConfiguration(){
