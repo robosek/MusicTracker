@@ -1,8 +1,7 @@
 package helpers;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
-import play.Configuration;
-import play.Play;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 
 import javax.inject.Inject;
 
@@ -25,15 +24,15 @@ public class CustomConfiguration {
     }
 
     @Inject
-    public CustomConfiguration(Configuration configuration){
-        _configuration = configuration;
+    public CustomConfiguration(){
+        _configuration = ConfigFactory.load();
         initializeConfiguration();
     }
 
-//    public CustomConfiguration(Configuration configuration){
-//        _configuration = configuration;
-//        initializeConfiguration();
-//    }
+    public CustomConfiguration(Config configuration){
+        _configuration = configuration;
+        initializeConfiguration();
+    }
 
 
     private void initializeConfiguration(){
@@ -44,7 +43,7 @@ public class CustomConfiguration {
     }
 
     private void getHost(){
-        _mongoHost = _configuration.getString("mongo.host");
+        _mongoHost = _configuration. getString("mongo.host");
     }
 
     private void getPort(){
@@ -60,7 +59,7 @@ public class CustomConfiguration {
     }
 
 
-    private  Configuration _configuration;
+    private Config _configuration;
     private String _mongoUsername;
     private String _mongoPassword;
     private String _mongoHost;
