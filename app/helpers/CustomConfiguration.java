@@ -3,8 +3,6 @@ package helpers;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
-import javax.inject.Inject;
-
 /**
  * Created by robert on 18.09.16.
  */
@@ -23,7 +21,7 @@ public class CustomConfiguration {
         return _mongoPort;
     }
 
-    @Inject
+
     public CustomConfiguration(){
         _configuration = ConfigFactory.load();
         initializeConfiguration();
